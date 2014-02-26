@@ -387,6 +387,12 @@ class MiscSSLClientTestCase(BaseSSLClientTestCase):
         finally:
             self.stop_server(pid)
 
+    @unittest.skip(
+        'When SSLv2 is disabled via openssl configuration, as it is in Debian '
+        'and Ubuntu, SSLv23 will use SSLv3/TLSv1 client hello format, thus '
+        'enabling connection to SSLv3/TLSv1 servers.  The expected failure to '
+        'connect embodied in this test will not happen.  See Python '
+        'issue 13218 for additional detail.')
     def test_sslv23_no_v2_no_service(self):
         if fips_mode: # TLS is required in FIPS mode
             return
@@ -400,6 +406,12 @@ class MiscSSLClientTestCase(BaseSSLClientTestCase):
         finally:
             self.stop_server(pid)
 
+    @unittest.skip(
+        'When SSLv2 is disabled via openssl configuration, as it is in Debian '
+        'and Ubuntu, SSLv23 will use SSLv3/TLSv1 client hello format, thus '
+        'enabling connection to SSLv3/TLSv1 servers.  The expected failure to '
+        'connect embodied in this test will not happen.  See Python '
+        'issue 13218 for additional detail.')
     def test_sslv23_weak_crypto(self):
         if fips_mode: # TLS is required in FIPS mode
             return

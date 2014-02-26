@@ -14,6 +14,7 @@ Summary of changes:
 import socket
 from urllib2 import *
 import urlparse
+import inspect
 
 import SSL
 import httpslib
