@@ -79,7 +79,7 @@ class _M2CryptoBuildExt(build_ext.build_ext):
         self.swig_opts.append('-modern')
 
         # Fedora does hat tricks.
-        if platform.linux_distribution()[0] in ['Fedora', 'CentOS']:
+        if os.path.isfile('/etc/redhat-release'):
             if platform.architecture()[0] == '64bit':
                 self.swig_opts.append('-D__x86_64__')
             elif platform.architecture()[0] == '32bit':
@@ -121,7 +121,7 @@ session management; FTP/TLS client and server; S/MIME; ZServerSSL: A HTTPS
 server for Zope and ZSmime: An S/MIME messenger for Zope. M2Crypto can also be
 used to provide SSL for Twisted. Smartcards supported through the Engine
 interface.''',
-      license = 'BSD-style license',
+      license = 'MIT',
       platforms = ['any'],
       author = 'Ng Pheng Siong',
       author_email = 'ngps at sandbox rulemaker net',
@@ -132,6 +132,7 @@ interface.''',
       classifiers = [
           'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',
+          'License :: OSI Approved :: MIT License',
           'Operating System :: OS Independent',
           'Programming Language :: C',
           'Programming Language :: Python',
@@ -144,6 +145,6 @@ interface.''',
       ],
 
       ext_modules = [m2crypto],
-      test_suite='tests.alltests.suite',
+      test_suite='test.alltests.suite',
       cmdclass = {'build_ext': _M2CryptoBuildExt}
       )
